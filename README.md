@@ -1,2 +1,2 @@
-# NymTowerDefense
-Tower base defense game
+# TowerBaseDefense
+Typical towwer defense game 
