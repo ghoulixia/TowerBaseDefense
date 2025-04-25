@@ -1,6 +1,6 @@
 # Tower Defense - NHM 
 
-* Thử nghiệm game: 
+* Thử nghiệm game: https://youtu.be/RhEtWx7RWhA
 * Phá đảo game: Chưa có
 
 ## Giới thiệu
@@ -102,8 +102,36 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
   * Tiếng bắn: [Funneractic](https://www.youtube.com/watch?v=j9T1KkP-IFg)
   * Tiếng chọn trụ: https://pixabay.com/sound-effects/retro-select-236670/
   * Tiếng Win, Lose:  https://mixkit.co/free-sound-effects/game/
+* Font chữ:
+  * font ui: [Verdana-bold](https://fontzone.net/font-details/verdana-bold)
+  * font logo: [MightySouly](https://www.1001fonts.com/mighty-souly-font.html)
+  * font menu: [NintendoBoldRM8E](https://www.fontspace.com/category/gaming)
  
 ## Về source code
+
+* GameMap.h / GameMap.cpp
+  * BFS Pathfinding: Tìm đường đi ngắn nhất cho Enemy trên lưới bản đồ bằng thuật toán BFS (Breadth-First Search).
+  * Kiểm tra ô hợp lệ: Kiểm tra xem một ô có thể đặt tháp hoặc Enemy có thể đi qua không (isWalkable). 
+* Tower.h / Tower.cpp
+  * Tìm mục tiêu (Linear Search): Duyệt qua danh sách Enemy để tìm mục tiêu gần nhất trong phạm vi bắn.
+  * Quản lý thời gian hồi chiêu: Sử dụng biến timer/cooldown để kiểm soát tốc độ bắn của tháp.
+  * Tính toán góc xoay: Sử dụng hàm lượng giác để xoay tháp về phía mục tiêu.
+* Enemy.h / Enemy.cpp
+  * Di chuyển theo đường đi: Enemy di chuyển theo danh sách các điểm (path) đã được tìm bằng BFS.
+  * Kiểm tra trạng thái sống/chết: Xử lý khi Enemy bị tiêu diệt hoặc đến đích.
+* Projectile.h / Projectile.cpp
+  * Kiểm tra va chạm (Circle Collision): Tính khoảng cách giữa Projectile và Enemy để xác định va chạm.
+  * Quản lý thời gian sống: Đạn có thời gian tồn tại, tự động hủy khi hết thời gian hoặc va chạm.
+* SoundManager.h / SoundManager.cpp
+  * Quản lý phát âm thanh: Sử dụng SDL_mixer để load và phát hiệu ứng âm thanh khi có sự kiện (bắn, thắng, thua...). 
+  * Điều chỉnh âm lượng: Cho phép tăng/giảm âm lượng hoặc tắt/mở âm thanh.
+* main.cpp
+  * Tải tài nguyên: Load ảnh, âm thanh, font chữ khi khởi tạo game.
+  * Game Loop: Vòng lặp chính cập nhật trạng thái game, nhận sự kiện, vẽ màn hình.
+  * Xử lý sự kiện người dùng: Nhận và xử lý sự kiện chuột, bàn phím để đặt/xóa tháp, bắt đầu game, pause, ...
+  * Quản lý đối tượng động: Thêm/xóa Enemy, Projectile, Tower khỏi danh sách khi cần thiết.
+  * Kiểm tra điều kiện thắng/thua: Kiểm tra số máu căn cứ, số Enemy còn lại, số wave đã vượt qua để xác định trạng thái game. 
+
 
 ## Tiến trình (Update log)
 
@@ -133,15 +161,14 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
       * Thêm Sound Effects cho game (quan trọng)
       * Có thể sẽ thêm chức năng phá trụ
       * Có thể thêm loại quái, loại trụ
-* 1.1
+* 1.1  (25/4/2025)
    * Thêm SoundManager và các Sound Effects
 * 1.2
    * Thêm Sound trong phần Settings
    * Thêm cơ chế upgrade level của trụ
-* 1.3
+* 1.3  (26/4/2025)
    * Thêm cơ chế Boss
    * Giảm max waves từ 15 -> 9
    * Balance lại game, tăng độ khó đáng kể
 * 1.4
    * Rework/Thêm stage 1 -> 10 
-
