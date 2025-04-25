@@ -1,22 +1,27 @@
-# Tower Defense
+# Tower Defense - NHM 
+
+* Thử nghiệm game: 
+* Phá đảo game: Chưa có
 
 ## Giới thiệu
 
 Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng đợt quái, được truyền cảm hứng phong cách qua tựa game Diep.io
 
-## Khởi đầu
+## Cách tải Game
 
-### Cần thiết
+### 1. Không bao gồm code
+* Tải game (được nén thành .zip) tại link sau: https://github.com/ghoulixia/TowerBaseDefense/releases/tag/1.4
+* Giải nén file .zip và chạy Tower Defense.exe để chơi
 
-* SDL2_TTF, SDL2_IMAGE, SDL2, SDL2_MIXER
-* Visual Studio Code 2022 để compile dễ dàng nhất (link hết lib vả include của SDL)
+### 2. Tự Build lại bằng IDE
 
-### Cài đặt
-(Sẽ được thêm chi tiết sau)
-* Tải toàn bộ trên repo về
-* Vào file .exe qua x64/Release/Tower Defense.exe
+* Một IDE để compile c++
+* Cần tải các thư viện SDL cần thiết [SDL_TTF](https://github.com/libsdl-org/SDL_ttf/releases/tag/release-2.24.0), [SDL_IMAGE](https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.8), [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.32.4), [SDL_MIXER](https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.8.1)
+* Setup project với các thư viện SDL
+* Tải Code trên repo về và rebuild
 
-### Cách chơi
+
+## Cách chơi
 (Sẽ được thêm chi tiết sau)
 * Sau khi compile hoặc chạy file .exe trong release
 * Ấn vào START
