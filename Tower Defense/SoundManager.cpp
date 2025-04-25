@@ -33,7 +33,7 @@ bool SoundManager::init() {
     if (!selectSound) {
         std::cerr << "Failed to load selecting.wav! SDL_mixer Error: " << Mix_GetError() << std::endl;
     }
-    setVolume(currentVolume); // set initial volume
+    setVolume(currentVolume); //initial volume
     initialized = true;
     return true;
 }

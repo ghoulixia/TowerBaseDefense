@@ -681,11 +681,11 @@ void gameLoop() {
                     else if (event.key.keysym.sym == SDLK_4) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
                     else if (event.key.keysym.sym == SDLK_m) { playerMoney += 500; }
                     else if (event.key.keysym.sym == SDLK_e) {
-                        // Xóa trụ tại vị trí chuột (nếu có)
+                        // xóa trụ tại vị trí chuột
                         int tileX = mouseX / TILE_W;
                         int tileY = mouseY / TILE_H;
                         if (map && tileX >= 0 && tileX < map->cols && tileY >= 0 && tileY < map->rows) {
-                            // Tìm trụ tại vị trí này
+                            // tìm trụ tại vị trí này
                             auto it = std::find_if(placedTowers.begin(), placedTowers.end(), [&](Tower* t) {
                                 auto pos = t->getTilePos();
                                 return pos.x == tileX && pos.y == tileY;
@@ -693,12 +693,12 @@ void gameLoop() {
                             if (it != placedTowers.end()) {
                                 delete *it;
                                 placedTowers.erase(it);
-                                map->grid[tileY][tileX] = '*'; // Đánh dấu lại ô này có thể đặt trụ
+                                map->grid[tileY][tileX] = '*'; // đánh dấu lại ô này có thể đặt trụ
                             }
                         }
                     }
                     else if (event.key.keysym.sym == SDLK_u) {
-                        // Nâng cấp trụ tại vị trí chuột (nếu có)
+                        //nâng cấp trụ tại vị trí chuột
                         int tileX = mouseX / TILE_W;
                         int tileY = mouseY / TILE_H;
                         if (map && tileX >= 0 && tileX < map->cols && tileY >= 0 && tileY < map->rows) {
