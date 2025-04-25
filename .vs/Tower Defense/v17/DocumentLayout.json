@@ -7,22 +7,6 @@
       "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Tower.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Tower.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -31,12 +15,36 @@
       "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\GameMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Projectile.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Projectile.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Tower.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\SoundManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\SoundManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\GameMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\GameMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{DF01F410-B9E1-4EA5-A840-B02BF7F3F42F}|Tower Defense\\Tower Defense.vcxproj|solutionrelative:Tower Defense\\Tower.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,33 +62,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Tower.h",
-              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h",
-              "RelativeDocumentMoniker": "Tower Defense\\Tower.h",
-              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h",
-              "RelativeToolTip": "Tower Defense\\Tower.h",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAH4AAAAGAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "SoundManager.h",
+              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.h",
+              "RelativeDocumentMoniker": "Tower Defense\\SoundManager.h",
+              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.h",
+              "RelativeToolTip": "Tower Defense\\SoundManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-28T16:24:36.153Z",
+              "WhenOpened": "2025-04-25T11:17:10.139Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Tower.cpp",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.cpp",
               "RelativeDocumentMoniker": "Tower Defense\\Tower.cpp",
               "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.cpp",
               "RelativeToolTip": "Tower Defense\\Tower.cpp",
-              "ViewState": "AgIAALQAAAAAAAAAAAAAAL4AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHoAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-28T16:28:40.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Projectile.cpp",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.cpp",
               "RelativeDocumentMoniker": "Tower Defense\\Projectile.cpp",
@@ -93,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Projectile.h",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Projectile.h",
               "RelativeDocumentMoniker": "Tower Defense\\Projectile.h",
@@ -106,20 +114,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Enemy.cpp",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Enemy.cpp",
               "RelativeDocumentMoniker": "Tower Defense\\Enemy.cpp",
               "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Enemy.cpp",
               "RelativeToolTip": "Tower Defense\\Enemy.cpp",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAAH0AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAIwH0AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-28T14:43:17.727Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Enemy.h",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Enemy.h",
               "RelativeDocumentMoniker": "Tower Defense\\Enemy.h",
@@ -132,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "GameMap.cpp",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.cpp",
               "RelativeDocumentMoniker": "Tower Defense\\GameMap.cpp",
@@ -145,29 +153,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GameMap.h",
-              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.h",
-              "RelativeDocumentMoniker": "Tower Defense\\GameMap.h",
-              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.h",
-              "RelativeToolTip": "Tower Defense\\GameMap.h",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-28T11:00:44.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\main.cpp",
               "RelativeDocumentMoniker": "Tower Defense\\main.cpp",
               "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\main.cpp",
               "RelativeToolTip": "Tower Defense\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgDAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAOsBAAAAAAAAAAAMwPUBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-14T16:31:16.855Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SoundManager.cpp",
+              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.cpp",
+              "RelativeDocumentMoniker": "Tower Defense\\SoundManager.cpp",
+              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\SoundManager.cpp",
+              "RelativeToolTip": "Tower Defense\\SoundManager.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-25T11:17:23.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GameMap.h",
+              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.h",
+              "RelativeDocumentMoniker": "Tower Defense\\GameMap.h",
+              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\GameMap.h",
+              "RelativeToolTip": "Tower Defense\\GameMap.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-28T11:00:44.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Tower.h",
+              "DocumentMoniker": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h",
+              "RelativeDocumentMoniker": "Tower Defense\\Tower.h",
+              "ToolTip": "D:\\game code\\src\\Tower Defense\\Tower Defense\\Tower.h",
+              "RelativeToolTip": "Tower Defense\\Tower.h",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAH4AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-28T16:24:36.153Z"
             }
           ]
         }

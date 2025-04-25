@@ -1,6 +1,7 @@
-﻿#include <SDL.h>
+#include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -14,6 +15,7 @@
 #include "Enemy.h"
 #include "Tower.h"
 #include "Projectile.h"
+#include "SoundManager.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -185,6 +187,12 @@ bool init() {
         return false;
     }
 
+    if (!SoundManager::getInstance().init()) {
+        std::cerr << "SoundManager init fail" << std::endl;
+        close();
+        return false;
+    }
+
     TTF_SizeText(font, "Start Game", &startGameWidth, &startGameHeight); startGameX = SCREEN_WIDTH / 2 - startGameWidth / 2;
     TTF_SizeText(font, "Options", &optionsWidth, &optionsHeight); optionsX = SCREEN_WIDTH / 2 - optionsWidth / 2;
     TTF_SizeText(font, "Exit", &exitWidth, &exitHeight); exitX = SCREEN_WIDTH / 2 - exitWidth / 2;
@@ -274,7 +282,7 @@ void drawStageButton(int x, int y, int stage) {
     const int buttonSize = 100;
     SDL_Rect rect = { x, y, buttonSize, buttonSize };
 
-    //ảnh preview màn
+    //ảnh preview màn 
     int stageIndex = stage - 1;
     if (stageIndex >= 0 && stageIndex < MAX_STAGES && stagePreviewTextures[stageIndex]) {
         SDL_RenderCopy(renderer, stagePreviewTextures[stageIndex], NULL, &rect);
@@ -355,6 +363,7 @@ int chooseStage() {
 }
 
 void renderGameOver() {
+    SoundManager::getInstance().playLosing();
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180);
     SDL_Rect overlayRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_RenderFillRect(renderer, &overlayRect);
@@ -366,6 +375,7 @@ void renderGameOver() {
 }
 
 void renderGameWon() {
+    SoundManager::getInstance().playWinning();
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180);
     SDL_Rect overlayRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     SDL_RenderFillRect(renderer, &overlayRect);
@@ -489,7 +499,7 @@ void renderToolbar(int toolbarX, int toolbarW) {
     currentY = SCREEN_HEIGHT - 70;
     renderText("1/2/3/4: Select", textX, currentY, white, uiFont);
     currentY += 20;
-    renderText("ESC: Cancel", textX, currentY, white, uiFont);
+    renderText("E: Delete", textX, currentY, white, uiFont);
     currentY += 20;
     renderText("ESC: Quit", textX, currentY, white, uiFont);
 }
@@ -641,12 +651,29 @@ void gameLoop() {
                         if (showBuildPreview) showBuildPreview = false;
                         else { currentState = GameState::MENU; resetGameState(); }
                     }
-                    else if (event.key.keysym.sym == SDLK_1) { selectedBuildType = TowerType::BASIC; showBuildPreview = true; }
-                    else if (event.key.keysym.sym == SDLK_2) { selectedBuildType = TowerType::PIERCING; showBuildPreview = true; }
-                    else if (event.key.keysym.sym == SDLK_3) { selectedBuildType = TowerType::MINIGUN; showBuildPreview = true; }
-                    else if (event.key.keysym.sym == SDLK_4) { selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
+                    else if (event.key.keysym.sym == SDLK_1) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::BASIC; showBuildPreview = true; }
+                    else if (event.key.keysym.sym == SDLK_2) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::PIERCING; showBuildPreview = true; }
+                    else if (event.key.keysym.sym == SDLK_3) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::MINIGUN; showBuildPreview = true; }
+                    else if (event.key.keysym.sym == SDLK_4) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
                     else if (event.key.keysym.sym == SDLK_n) { if (!waveActive) waveDelayTimer = waveDelay; }
                     else if (event.key.keysym.sym == SDLK_m) { playerMoney += 500; }
+                    else if (event.key.keysym.sym == SDLK_e) {
+                        // Xóa trụ tại vị trí chuột (nếu có)
+                        int tileX = mouseX / TILE_W;
+                        int tileY = mouseY / TILE_H;
+                        if (map && tileX >= 0 && tileX < map->cols && tileY >= 0 && tileY < map->rows) {
+                            // Tìm trụ tại vị trí này
+                            auto it = std::find_if(placedTowers.begin(), placedTowers.end(), [&](Tower* t) {
+                                auto pos = t->getTilePos();
+                                return pos.x == tileX && pos.y == tileY;
+                            });
+                            if (it != placedTowers.end()) {
+                                delete *it;
+                                placedTowers.erase(it);
+                                map->grid[tileY][tileX] = '*'; // Đánh dấu lại ô này có thể đặt trụ
+                            }
+                        }
+                    }
                 }
                 else if (event.type == SDL_MOUSEBUTTONDOWN) {
                     int clickX = event.button.x; int clickY = event.button.y;
@@ -662,10 +689,10 @@ void gameLoop() {
                                 iconRects[i] = { iconX, yPos, ICON_SIZE, ICON_SIZE };
                                 yPos += ICON_SIZE + ICON_SPACING + 25;
                             }
-                            if (clickY >= iconRects[0].y && clickY < iconRects[0].y + ICON_SIZE) { selectedBuildType = TowerType::BASIC; showBuildPreview = true; }
-                            else if (clickY >= iconRects[1].y && clickY < iconRects[1].y + ICON_SIZE) { selectedBuildType = TowerType::PIERCING; showBuildPreview = true; }
-                            else if (clickY >= iconRects[2].y && clickY < iconRects[2].y + ICON_SIZE) { selectedBuildType = TowerType::MINIGUN; showBuildPreview = true; }
-                            else if (clickY >= iconRects[3].y && clickY < iconRects[3].y + ICON_SIZE) { selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
+                            if (clickY >= iconRects[0].y && clickY < iconRects[0].y + ICON_SIZE) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::BASIC; showBuildPreview = true; }
+                            else if (clickY >= iconRects[1].y && clickY < iconRects[1].y + ICON_SIZE) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::PIERCING; showBuildPreview = true; }
+                            else if (clickY >= iconRects[2].y && clickY < iconRects[2].y + ICON_SIZE) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::MINIGUN; showBuildPreview = true; }
+                            else if (clickY >= iconRects[3].y && clickY < iconRects[3].y + ICON_SIZE) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
                             else { clickedUI = false; }
                         }
 
@@ -759,7 +786,11 @@ void gameLoop() {
                         currentWave++;
                         waveEnemyCount = 0;
                         spawnTimer = 0.0f;
-                        std::cout << "wave " << currentWave << " " << enemiesThisWave << " enemies" << std::endl;
+                        std::cout << "wave " << currentWave << " " << enemiesThisWave << " enemies" << std::endl; //**
+
+                        if (currentWave >= MAX_WAVES) {
+                            currentState = GameState::GAME_WON;
+                        }
                     }
                 }
             }
@@ -893,6 +924,7 @@ void close() {
     if (uiFont) TTF_CloseFont(uiFont);
     if (renderer) SDL_DestroyRenderer(renderer);
     if (window) SDL_DestroyWindow(window);
+    SoundManager::getInstance().close();
     IMG_Quit();
     TTF_Quit(); 
     SDL_Quit();

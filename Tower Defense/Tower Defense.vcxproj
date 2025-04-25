@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2_image\include;$(ProjectDir)SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)SDL2\lib;$(ProjectDir)SDL2_ttf\lib;$(ProjectDir)SDL2_image\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2_image\include;$(ProjectDir)SDL2\include;$(ProjectDir)SDL2_mixer\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)SDL2\lib;$(ProjectDir)SDL2_ttf\lib;$(ProjectDir)SDL2_image\lib;$(ProjectDir)SDL2_mixer\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)SDL2_image\include;$(ProjectDir)SDL2\include;$(ProjectDir)SDL2_ttf\include;$(IncludePath)</IncludePath>
@@ -112,14 +112,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2_image\include;$(ProjectDir)SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL2_ttf\include;$(ProjectDir)SDL2_image\include;$(ProjectDir)SDL2\include;$(ProjectDir)SDL2_mixer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_image\lib;$(ProjectDir)SDL2_ttf\lib;$(ProjectDir)SDL2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)SDL2_image\lib;$(ProjectDir)SDL2_ttf\lib;$(ProjectDir)SDL2\lib;$(ProjectDir)SDL2_mixer\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,12 +146,14 @@
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

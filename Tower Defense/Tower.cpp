@@ -1,8 +1,9 @@
-﻿#include "Tower.h"
+#include "Tower.h"
 #include "Projectile.h"
 #include "Enemy.h"
 #include <cmath>
 #include <limits>
+#include "SoundManager.h"
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -122,6 +123,7 @@ void BasicTurret::fire(std::vector<Projectile*>& projectiles) {
         projectileTexture,
         1
     ));
+    SoundManager::getInstance().playShoot();
 }
 
 PiercingTurret::PiercingTurret(int tx, int ty, int TILE_WIDTH, int TILE_HEIGHT, SDL_Texture* projTex)
@@ -145,6 +147,7 @@ void PiercingTurret::fire(std::vector<Projectile*>& projectiles) {
         projectileTexture,
         projectilePierceAmount
     ));
+    SoundManager::getInstance().playShoot();
 }
 
 MinigunTurret::MinigunTurret(int tx, int ty, int TILE_WIDTH, int TILE_HEIGHT, SDL_Texture* projTex)
@@ -169,6 +172,7 @@ void MinigunTurret::fire(std::vector<Projectile*>& projectiles) {
         projectileTexture,
         1
     ));
+    SoundManager::getInstance().playShoot();
 }
 
 SniperTurret::SniperTurret(int tx, int ty, int TILE_WIDTH, int TILE_HEIGHT, SDL_Texture* projTex)
@@ -192,4 +196,5 @@ void SniperTurret::fire(std::vector<Projectile*>& projectiles) {
         projectileTexture,
         1
     ));
+    SoundManager::getInstance().playShoot();
 }
