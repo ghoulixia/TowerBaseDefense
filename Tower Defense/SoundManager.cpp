@@ -1,5 +1,6 @@
 #include "SoundManager.h"
 #include <iostream>
+#include <algorithm>
 
 SoundManager& SoundManager::getInstance() {
     static SoundManager instance;
@@ -32,6 +33,7 @@ bool SoundManager::init() {
     if (!selectSound) {
         std::cerr << "Failed to load selecting.wav! SDL_mixer Error: " << Mix_GetError() << std::endl;
     }
+    setVolume(currentVolume); // set initial volume
     initialized = true;
     return true;
 }
@@ -58,4 +60,18 @@ void SoundManager::playLosing() {
 }
 void SoundManager::playSelect() {
     if (selectSound) { Mix_PlayChannel(-1, selectSound, 0); }
+}
+
+void SoundManager::setVolume(int volume) {
+    if (volume < 0) volume = 0;
+    if (volume > 128) volume = 128;
+    currentVolume = volume;
+    if (shootSound) Mix_VolumeChunk(shootSound, currentVolume);
+    if (winningSound) Mix_VolumeChunk(winningSound, currentVolume);
+    if (losingSound) Mix_VolumeChunk(losingSound, currentVolume);
+    if (selectSound) Mix_VolumeChunk(selectSound, currentVolume);
+}
+
+int SoundManager::getVolume() const {
+    return currentVolume;
 }

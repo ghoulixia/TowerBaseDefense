@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #ifndef TOWER_H
 #define TOWER_H
 
@@ -61,6 +61,8 @@ public:
 protected:
     SDL_Texture* turretTexture;
     TowerType type;
+    int level = 1;
+    static const int MAX_LEVEL = 3;
 
     static float distanceSq(float x1, float y1, float x2, float y2);
 
@@ -76,6 +78,8 @@ public:
     int getCost() const;
     SDL_Point getTilePos() const;
     TowerType getType() const;
+    int getLevel() const { return level; }
+    void upgrade();
 
 protected:
     virtual void findTarget(std::vector<Enemy*>& enemies);

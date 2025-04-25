@@ -11,6 +11,8 @@ public:
     void playWinning();
     void playLosing();
     void playSelect();
+    void setVolume(int volume); // volume: 0-128
+    int getVolume() const;
 private:
     SoundManager();
     ~SoundManager();
@@ -19,4 +21,5 @@ private:
     Mix_Chunk* losingSound = nullptr;
     Mix_Chunk* selectSound = nullptr;
     bool initialized = false;
+    int currentVolume = 96; // default volume
 };

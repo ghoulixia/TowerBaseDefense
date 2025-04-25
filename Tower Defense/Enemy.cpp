@@ -1,4 +1,4 @@
-﻿#include "Enemy.h"
+#include "Enemy.h"
 #include <SDL.h>
 #include <iostream>
 #include <cmath>

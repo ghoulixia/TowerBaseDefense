@@ -47,6 +47,7 @@ SDL_Texture* stagePreviewTextures[MAX_STAGES] = { nullptr };
 SDL_Texture* monsterTexture1 = nullptr;
 SDL_Texture* monsterTexture2 = nullptr;
 SDL_Texture* monsterTexture3 = nullptr;
+SDL_Texture* monsterTextureBoss = nullptr;
 
 SDL_Texture* texTurretBasic = nullptr;
 SDL_Texture* texTurretPierce = nullptr;
@@ -68,7 +69,7 @@ std::vector<Tower*> placedTowers;
 std::vector<Projectile*> activeProjectiles;
 
 int playerHealth = 20;
-int playerMoney = 150;
+int playerMoney = 250;
 int currentWave = 0;
 
 enum class EnemyType {
@@ -82,14 +83,13 @@ static float spawnTimer = 0.0f;
 const float spawnInterval = 0.8f;  //tg spawn của quái cách nhau xxxx
 static int waveEnemyCount = 0;    //Quái đã sinh trong một đợt
 const int enemiesPerWaveBase = 10;
-const int enemiesPerWave = 10;
-const int MAX_WAVES = 15; //tổng đợt
 const int enemiesPerWaveScaling = 3; //thêm quái mỗi đợt
+const int MAX_WAVES = 10; //tổng đợt
 static bool waveActive = false;
 const float waveDelay = 3.0f;
 static float waveDelayTimer = 0.0f;
-const int WAVE_COMPLETION_REWARD_BASE = 50;
-const int WAVE_COMPLETION_REWARD_SCALING = 15;
+const int WAVE_COMPLETION_REWARD_BASE = 30;
+const int WAVE_COMPLETION_REWARD_SCALING = 7;
 
 TowerType selectedBuildType = TowerType::UNKNOWN; //chưa chọn gì
 bool showBuildPreview = false;
@@ -108,6 +108,13 @@ void renderGameOver();
 void resetGameState();
 void renderToolbar(int toolbarX, int toolbarW);
 void renderPlacementPreview(int mouseX, int mouseY);
+
+int getBossCountForWave(int wave) {
+    if (wave == 3) return 1;
+    if (wave == 6) return 2;
+    if (wave == 9) return 4;
+    return 0;
+}
 
 bool init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -151,7 +158,8 @@ bool init() {
     monsterTexture1 = loadTexture("Data/monster1.bmp");    //load texture quái
     monsterTexture2 = loadTexture("Data/monster2.bmp");
     monsterTexture3 = loadTexture("Data/monster3.bmp");
-    if (!monsterTexture1 || !monsterTexture2 || !monsterTexture3) {
+    monsterTextureBoss = loadTexture("Data/monster_boss1.bmp");
+    if (!monsterTexture1 || !monsterTexture2 || !monsterTexture3 || !monsterTextureBoss) {
         std::cerr << "Enemy load fail" << std::endl;
         close();
         return false;
@@ -262,6 +270,16 @@ void showOptions() {
                     optionsRunning = false;
                     currentState = GameState::MENU;
                 }
+                else if (event.key.keysym.sym == SDLK_LEFT) {
+                    int volume = SoundManager::getInstance().getVolume();
+                    volume = std::max(0, volume - 8);
+                    SoundManager::getInstance().setVolume(volume);
+                }
+                else if (event.key.keysym.sym == SDLK_RIGHT) {
+                    int volume = SoundManager::getInstance().getVolume();
+                    volume = std::min(128, volume + 8);
+                    SoundManager::getInstance().setVolume(volume);
+                }
             }
         }
 
@@ -270,7 +288,11 @@ void showOptions() {
 
         renderText("OPTIONS", SCREEN_WIDTH / 2, 100, white, font, true);
 
-        //chưa thêm options
+        // Âm lượng hiệu ứng
+        int volume = SoundManager::getInstance().getVolume();
+        renderText("SFX Volume:", SCREEN_WIDTH / 2 - 120, 200, white, uiFont);
+        renderText(std::to_string(volume), SCREEN_WIDTH / 2 + 80, 200, white, uiFont);
+        renderText("Left/Right Arrow: Adjust", SCREEN_WIDTH / 2, 240, white, uiFont, true);
 
         renderText("Press ESC to return", SCREEN_WIDTH / 2, 400, white, uiFont, true);
 
@@ -389,7 +411,7 @@ void renderGameWon() {
 
 void resetGameState() {   //reset các biến của game sau khi kết thúc màn
     playerHealth = 20;
-    playerMoney = 150;
+    playerMoney = 250;
     currentWave = 0;
     waveActive = false;
     waveDelayTimer = waveDelay;
@@ -496,10 +518,12 @@ void renderToolbar(int toolbarX, int toolbarW) {
         }
     }
 
-    currentY = SCREEN_HEIGHT - 70;
+    currentY = SCREEN_HEIGHT - 90;
     renderText("1/2/3/4: Select", textX, currentY, white, uiFont);
     currentY += 20;
     renderText("E: Delete", textX, currentY, white, uiFont);
+    currentY += 20;
+    renderText("U: Upgrade", textX, currentY, white, uiFont);
     currentY += 20;
     renderText("ESC: Quit", textX, currentY, white, uiFont);
 }
@@ -655,7 +679,6 @@ void gameLoop() {
                     else if (event.key.keysym.sym == SDLK_2) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::PIERCING; showBuildPreview = true; }
                     else if (event.key.keysym.sym == SDLK_3) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::MINIGUN; showBuildPreview = true; }
                     else if (event.key.keysym.sym == SDLK_4) { SoundManager::getInstance().playSelect(); selectedBuildType = TowerType::SNIPER; showBuildPreview = true; }
-                    else if (event.key.keysym.sym == SDLK_n) { if (!waveActive) waveDelayTimer = waveDelay; }
                     else if (event.key.keysym.sym == SDLK_m) { playerMoney += 500; }
                     else if (event.key.keysym.sym == SDLK_e) {
                         // Xóa trụ tại vị trí chuột (nếu có)
@@ -671,6 +694,25 @@ void gameLoop() {
                                 delete *it;
                                 placedTowers.erase(it);
                                 map->grid[tileY][tileX] = '*'; // Đánh dấu lại ô này có thể đặt trụ
+                            }
+                        }
+                    }
+                    else if (event.key.keysym.sym == SDLK_u) {
+                        // Nâng cấp trụ tại vị trí chuột (nếu có)
+                        int tileX = mouseX / TILE_W;
+                        int tileY = mouseY / TILE_H;
+                        if (map && tileX >= 0 && tileX < map->cols && tileY >= 0 && tileY < map->rows) {
+                            auto it = std::find_if(placedTowers.begin(), placedTowers.end(), [&](Tower* t) {
+                                auto pos = t->getTilePos();
+                                return pos.x == tileX && pos.y == tileY;
+                            });
+                            if (it != placedTowers.end()) {
+                                Tower* tower = *it;
+                                int upgradeCost = 50 * tower->getLevel(); //giá nâng cấp tăng dần
+                                if (tower->getLevel() < 3 && playerMoney >= upgradeCost) {
+                                    tower->upgrade();
+                                    playerMoney -= upgradeCost;
+                                }
                             }
                         }
                     }
@@ -701,7 +743,9 @@ void gameLoop() {
                             if (tileX >= 0 && tileX < map->cols && tileY >= 0 && tileY < map->rows) {
                                 bool isValidTile = (map->grid[tileY][tileX] == '*');
                                 bool isOccupied = false;
-                                for (const auto* t : placedTowers) if (t->getTilePos().x == tileX && t->getTilePos().y == tileY) { isOccupied = true; break; }
+                                for (const auto* tower : placedTowers) {
+                                    if (tower->getTilePos().x == tileX && tower->getTilePos().y == tileY) { isOccupied = true; break; }
+                                }
                                 int cost = 0; SDL_Texture* projTex = nullptr, * turretTex = nullptr;
                                 switch (selectedBuildType) {
                                 case TowerType::BASIC:    cost = BASIC_COST; projTex = texProjectileBasic; turretTex = texTurretBasic; break;
@@ -776,7 +820,7 @@ void gameLoop() {
 
         case GameState::PLAYING:
         {
-            int enemiesThisWave = static_cast<int>(enemiesPerWaveBase * pow(1.2, currentWave > 0 ? currentWave - 1 : 0));
+            int enemiesThisWave = enemiesPerWaveBase + currentWave * enemiesPerWaveScaling + (currentWave * currentWave) / 3;
 
             if (!waveActive) {
                 waveDelayTimer += deltaTime;
@@ -795,43 +839,73 @@ void gameLoop() {
                 }
             }
 
-            if (waveActive && waveEnemyCount < enemiesThisWave && map && !map->getPath().empty()) {
+            int bossCount = getBossCountForWave(currentWave);
+            int totalEnemiesThisWave = enemiesThisWave + bossCount;
+            if (waveActive && waveEnemyCount < totalEnemiesThisWave && map && !map->getPath().empty()) {
                 spawnTimer += deltaTime;
                 if (spawnTimer >= spawnInterval) {
                     spawnTimer -= spawnInterval;
+                    if (bossCount > 0 && waveEnemyCount < bossCount) {
+                        // Spawn boss
+                        int bossHP = 650 + 500 * (currentWave / 3);
+                        float bossSpeed = 45.0f;
+                        int bossReward = 300 + 100 * (currentWave / 3);
+                        int bossW = 80, bossH = 80;
+                        SDL_Point startPosPixels = map->getStartPixelPosition();
+                        Enemy* boss = new Enemy(static_cast<float>(startPosPixels.x), static_cast<float>(startPosPixels.y), bossHP, bossSpeed, bossReward, bossW, bossH);
+                        boss->setTexture(monsterTextureBoss);
+                        boss->setPath(map->getPath());
+                        activeEnemies.push_back(boss);
+                    } else {
+                        // Spawn quái thường như cũ
+                        EnemyType typeToSpawn;
+                        int typeChoice = rand() % 10;
+                        if (typeChoice < 5) typeToSpawn = EnemyType::MONSTER_NORMAL;
+                        else if (typeChoice < 8) typeToSpawn = EnemyType::MONSTER_TOUGH;
+                        else typeToSpawn = EnemyType::MONSTER_FAST;
+
+                        SDL_Texture* selectedTexture = nullptr;
+                        int hp = 0;
+                        float speed = 0;
+                        int reward = 0;
+                        int w = 50, h = 50;
+
+                        switch (typeToSpawn) {
+                        case EnemyType::MONSTER_NORMAL:
+                            selectedTexture = monsterTexture1;
+                            hp = 50 + currentWave * 18 + (int)(50 * currentWave * 0.28f);
+                            speed = 70.0f;
+                            reward = 8 + currentWave * 1;
+                            w = 48; h = 48;
+                            break;
+                        case EnemyType::MONSTER_TOUGH:
+                            selectedTexture = monsterTexture2;
+                            hp = 100 + currentWave * 28 + (int)(100 * currentWave * 0.34f);
+                            speed = 50.0f;
+                            reward = 10 + currentWave * 2;
+                            w = 55; h = 55;
+                            break;
+                        case EnemyType::MONSTER_FAST:
+                            selectedTexture = monsterTexture3;
+                            hp = 35 + currentWave * 13 + (int)(35 * currentWave * 0.22f);
+                            speed = 100.0f;
+                            reward = 6 + currentWave * 1;
+                            w = 45; h = 45;
+                            break;
+                        }
+
+                        SDL_Point startPosPixels = map->getStartPixelPosition();
+                        if (startPosPixels.x != -1) {
+                            Enemy* newEnemy = new Enemy(static_cast<float>(startPosPixels.x), static_cast<float>(startPosPixels.y), hp, speed, reward, w, h);
+                            newEnemy->setTexture(selectedTexture);
+                            newEnemy->setPath(map->getPath());
+                            activeEnemies.push_back(newEnemy);
+                        }
+                        else {
+                            waveActive = false;
+                        }
+                    }
                     waveEnemyCount++;
-
-                    EnemyType typeToSpawn;
-                    int typeChoice = rand() % 10;
-                    if (typeChoice < 5) typeToSpawn = EnemyType::MONSTER_NORMAL;
-                    else if (typeChoice < 8) typeToSpawn = EnemyType::MONSTER_TOUGH;
-                    else typeToSpawn = EnemyType::MONSTER_FAST;
-
-                    SDL_Texture* selectedTexture = nullptr;
-                    int hp = 0;
-                    float speed = 0;
-                    int reward = 0;
-                    int w = 50, h = 50;
-
-                    switch (typeToSpawn) {
-                    case EnemyType::MONSTER_NORMAL:
-                        selectedTexture = monsterTexture1; hp = 50 * (1 + currentWave / 5); speed = 70.0f; reward = 10; w = 48; h = 48; break;
-                    case EnemyType::MONSTER_TOUGH:
-                        selectedTexture = monsterTexture2; hp = 100 * (1 + currentWave / 4); speed = 50.0f; reward = 15; w = 55; h = 55; break;
-                    case EnemyType::MONSTER_FAST:
-                        selectedTexture = monsterTexture3; hp = 35 * (1 + currentWave / 5); speed = 100.0f; reward = 8; w = 45; h = 45; break;
-                    }
-
-                    SDL_Point startPosPixels = map->getStartPixelPosition();
-                    if (startPosPixels.x != -1) {
-                        Enemy* newEnemy = new Enemy(static_cast<float>(startPosPixels.x), static_cast<float>(startPosPixels.y), hp, speed, reward, w, h);
-                        newEnemy->setTexture(selectedTexture);
-                        newEnemy->setPath(map->getPath());
-                        activeEnemies.push_back(newEnemy);
-                    }
-                    else {
-                        waveActive = false;
-                    }
                 }
             }
 
@@ -851,7 +925,7 @@ void gameLoop() {
                 return false;
                 }), activeProjectiles.end());
 
-            if (waveActive && activeEnemies.empty() && waveEnemyCount >= enemiesThisWave) {
+            if (waveActive && activeEnemies.empty() && waveEnemyCount >= totalEnemiesThisWave) {
                 waveActive = false;
                 waveDelayTimer = 0.0f;
                 int reward = WAVE_COMPLETION_REWARD_BASE + (currentWave * WAVE_COMPLETION_REWARD_SCALING);
@@ -907,6 +981,7 @@ void close() {
     if (monsterTexture1) SDL_DestroyTexture(monsterTexture1);
     if (monsterTexture2) SDL_DestroyTexture(monsterTexture2);
     if (monsterTexture3) SDL_DestroyTexture(monsterTexture3);
+    if (monsterTextureBoss) SDL_DestroyTexture(monsterTextureBoss);
     if (texTurretBasic) SDL_DestroyTexture(texTurretBasic);
     if (texTurretPierce) SDL_DestroyTexture(texTurretPierce);
     if (texTurretMinigun) SDL_DestroyTexture(texTurretMinigun);

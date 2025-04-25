@@ -24,7 +24,8 @@ Tower::Tower(int tx, int ty, int TILE_WIDTH, int TILE_HEIGHT, TowerType t, int c
     angle(0.0f), //hướng nòng súng
     currentTarget(nullptr),
     turretTexture(nullptr),
-    type(t)
+    type(t),
+    level(1)
 {
 }
 
@@ -67,12 +68,23 @@ void Tower::render(SDL_Renderer* renderer) {
     //render phần xoay
     if (turretTexture) {
         if (SDL_QueryTexture(turretTexture, nullptr, nullptr, &texW, &texH) == 0) {
-            SDL_Rect turretDestRect = { static_cast<int>(pixelX - texW / 2.0f), static_cast<int>(pixelY - texH / 2.0f), texW, texH };
+            int size = (level == 1) ? 54 : (level == 2) ? 60 : 72;
+            SDL_Rect turretDestRect = { static_cast<int>(pixelX - size/2), static_cast<int>(pixelY - size/2), size, size };
             //đổi radian sang độ
             double angleDegrees = angle * (180.0 / M_PI) + 90.0;
 
             SDL_RenderCopyEx(renderer, turretTexture, nullptr, &turretDestRect, angleDegrees, nullptr, SDL_FLIP_NONE);
         }
+    }
+}
+
+void Tower::upgrade() {
+    if (level < 3) {
+        level++;
+        // Nâng cấp chỉ số: tăng damage, range, fireRate
+        range *= 1.15f;
+        fireRate *= 1.15f;
+        // Có thể thêm nâng cấp khác nếu muốn
     }
 }
 

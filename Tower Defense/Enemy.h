@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #ifndef ENEMY_H
 #define ENEMY_H
 
@@ -17,6 +17,7 @@ public:
     int width, height;
     bool active;
     bool reachedEnd;
+    bool isBoss = false;
 
 private:
     SDL_Texture* texture;
@@ -38,6 +39,8 @@ public:
     int getReward() const;
     SDL_FPoint getPosition() const;
     SDL_Rect getBoundingBox() const;
+    void setBoss(bool boss) { isBoss = boss; }
+    bool getBoss() const { return isBoss; }
 };
 
 #endif
