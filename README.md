@@ -60,7 +60,9 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
 * 1.3
    * Thêm cơ chế Boss
    * Giảm max waves từ 15 -> 9
-   * Balance lại game, tăng độ khó đáng kể 
+   * Balance lại game, tăng độ khó đáng kể
+* 1.4
+   * Rework/Thêm stage 1 -> 10 
 
 ## Cảm hứng
 
