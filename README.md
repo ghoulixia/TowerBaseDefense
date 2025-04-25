@@ -84,17 +84,26 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
 ## Chiến thắng và thất bại
 * Người chơi sẽ chiến thắng nếu thành công phòng thủ căn cứ được sau 9 đợt quái.
 
-![image](Tower%20Defense/preview/win.png)
+![image](Tower%20Defense/Preview/win.png)
 
 * Người chơi sẽ thua nếu quái tràn vào căn cứ và lượng máu còn lại là 0.
 
-![image](Tower%20Defense/preview/lose.png)
+![image](Tower%20Defense/Preview/lose.png)
 
 
 ## Về đồ họa và sound effects của game
-* Basic turret [Diep.io](https://diep.io/)
-* Pierce, Minigun, Sniper được tự tay vẽ lại sử dụng [GIMP](https://www.gimp.org/)
-* 
+
+* Sử dụng [GIMP](https://www.gimp.org/) để vẽ assets:
+  * Quái được vẽ lại theo video của [Funneractic](https://www.youtube.com/watch?v=4OJ4fHXgf5M&t=3s), quái boss tự vẽ
+  * Các nút stages tự vẽ
+  * Basic turret cảm hứng từ [Diep.io](https://diep.io/)
+  * Pierce, Minigun, Sniper turret và các loại đạn tự vẽ lại giống basic turret và basic projectiles
+* Sound effect:
+  * Tiếng bắn: [Funneractic](https://www.youtube.com/watch?v=j9T1KkP-IFg)
+  * Tiếng chọn trụ: https://pixabay.com/sound-effects/retro-select-236670/
+  * Tiếng Win, Lose:  https://mixkit.co/free-sound-effects/game/
+ 
+## Về source code
 
 ## Tiến trình (Update log)
 
@@ -136,10 +145,3 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
 * 1.4
    * Rework/Thêm stage 1 -> 10 
 
-## Cảm hứng
-
-* [Agar.io](https://agar.io)
-* [Diep.io](https://diep.io/)
-  * Cảm hứng Artstyle
-* [Funneractic](https://www.youtube.com/@funneractic)
-  * Lấy Assets các loại Ô, các loại quái, ý tưởng làm game 
