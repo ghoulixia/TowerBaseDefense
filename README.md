@@ -54,10 +54,18 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
       * Có thể thêm loại quái, loại trụ
 * 1.1
    * Thêm SoundManager và các Sound Effects
+* 1.2
+   * Thêm Sound trong phần Settings
+   * Thêm cơ chế upgrade level của trụ
+* 1.3
+   * Thêm cơ chế Boss
+   * Giảm max waves từ 15 -> 9
+   * Balance lại game, tăng độ khó đáng kể 
 
 ## Cảm hứng
 
 * [Agar.io](https://agar.io)
+* [Diep.io](https://diep.io/)
   * Cảm hứng Artstyle
 * [Funneractic](https://www.youtube.com/@funneractic)
   * Lấy Assets các loại Ô, các loại quái, ý tưởng làm game 
