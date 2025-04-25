@@ -19,15 +19,24 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
 * Cần tải các thư viện SDL cần thiết [SDL_TTF](https://github.com/libsdl-org/SDL_ttf/releases/tag/release-2.24.0), [SDL_IMAGE](https://github.com/libsdl-org/SDL_image/releases/tag/release-2.8.8), [SDL2](https://github.com/libsdl-org/SDL/releases/tag/release-2.32.4), [SDL_MIXER](https://github.com/libsdl-org/SDL_mixer/releases/tag/release-2.8.1)
 * Setup project với các thư viện SDL
 * Tải Code trên repo về và rebuild
+ ![image](Tower%20Defense/Preview/download.png)
 
 
 ## Cách chơi
-(Sẽ được thêm chi tiết sau)
-* Sau khi compile hoặc chạy file .exe trong release
-* Ấn vào START
-* Chọn màn từ 1-10
-* Bên phải là thanh công cụ giúp người chơi biết được Máu, Tiền, có thể chọn các trụ bằng cách click chuột hoặc dùng bàn phím (1-4)
-* Người chơi có 20 máu, nếu 20 con quái đi vào căn cứ thì người chơi sẽ thua. Ngược lại nếu phòng thủ được đến cuối thì người chơi thắng.
+
+* Khi mở game ta sẽ thấy màn hình như sau
+![image](Tower%20Defense/Preview/main.png)
+
+* Có 3 lựa chọn START OPTIONS EXIT
+   * Để thoát game, ta ấn vào EXIT
+  
+   * Nếu muốn chỉnh cài đặt, ấn vào OPTIONS
+   ![image](Tower%20Defense/Preview/option.png)
+
+      *Sử dụng nút mũi tên trái, phải để tăng, giảm âm lượng game
+
+
+   * Để bắt đầu chơi ta click nút START
 
 ## Tiến trình (Update log)
 
