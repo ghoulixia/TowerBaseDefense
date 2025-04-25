@@ -2,7 +2,7 @@
 
 ## Giới thiệu
 
-Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng đợt quái, được truyền cảm hứng phong cách qua tựa game Agar.io
+Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng đợt quái, được truyền cảm hứng phong cách qua tựa game Diep.io
 
 ## Khởi đầu
 
@@ -52,6 +52,8 @@ Một tựa game xây trụ bảo vệ căn cứ khỏi quái vật qua từng �
       * Thêm Sound Effects cho game (quan trọng)
       * Có thể sẽ thêm chức năng phá trụ
       * Có thể thêm loại quái, loại trụ
+* 1.1
+   * Thêm SoundManager và các Sound Effects
 
 ## Cảm hứng
 
